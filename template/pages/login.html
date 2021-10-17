@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+
+<div class="content-form">
+    {% if message %}
+    <p>{{message}}</p>
+    {% endif %}
+   <div class="title"><p>Login</p></div>
+   <form method="POST">
+    {% csrf_token %}
+       <div class="user-detail">
+           <div class="input-box">
+               <span class="details">Full name</span>
+               {{form.username}}
+           </div>
+       </div>
+       <div class="user-detail">
+        <div class="input-box">
+            <span class="details">Password</span>
+            {{form.password}}
+        </div>
+    </div>
+       <button class="btn" type="submit">Login</button>
+   </form>
+   <a href="{% url 'register' %}">Singup</a>
+   
+</div>
+{% endblock content %}

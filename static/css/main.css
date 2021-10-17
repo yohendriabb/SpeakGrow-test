@@ -1,0 +1,29 @@
+body{
+  background: #ebdad4;
+}
+
+.logo{
+  width: 200px;
+}
+
+.logo-dash{
+	width: 40px;
+	margin-right: 5px;
+}
+.img{
+  width: 40px;
+}
+
+.user-profile{
+  width: 200px;
+  
+}
+
+.btn-size{
+  width: 60px;
+}
+
+.profile{
+	height: 200px;
+	width: 200px;
+}

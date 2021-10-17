@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}
+	<title>List</title>
+{% endblock title %}
+{% block content %}
+	<div class="container">
+		<table class="table mt-4">
+			<thead class="thead-dark">
+				<tr>
+				<th scope="col">ID</th>
+				<th scope="col">Hostname</th>
+				<th scope="col">ip_address</th>
+				<th scope="col">created_date</th>
+				<th>Address</th>
+
+			</tr>
+
+			<tbody>
+			{% for obj in anonymous %}
+				<tr>
+					<th scope="row">1{{obj.id}}</th>
+					<th>{{obj.hostname}}</th>
+					<th>{{obj.ip_address}}</th>
+					<th>{{obj.created_date}}</th>
+					<th>{{obj.addr_info}}</th>
+				</tr>
+			{% endfor %}
+			</tbody>
+			</thead>
+		</table>
+		 {% if anonymous.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ anonymous.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ anonymous.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+	</div>
+{% endblock content %}

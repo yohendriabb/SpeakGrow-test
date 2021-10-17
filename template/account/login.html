@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+{% load account socialaccount %}
+
+{% block head_title %}{% trans "Sign In" %}{% endblock %}
+
+{% block content %}
+  <div class="container-lg">
+     <h1>{% trans "Sign In" %}</h1>
+
+  {% get_providers as socialaccount_providers %}
+
+  {% if socialaccount_providers %}
+  <p>{% blocktrans with site.name as site_name %}Pleaseddxc sign in with one
+  of your existing third party accounts. Or, <a href="{{ signup_url }}">sign up</a>
+  for a {{ site_name }} account and asdasdsign in below:{% endblocktrans %}</p>
+
+  <div class="socialaccount_ballot">
+
+    <ul class="socialaccount_providers">
+      {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+    </ul>
+
+    <div class="login-or">{% trans 'or' %}</div>
+
+  </div>
+
+  {% include "socialaccount/snippets/login_extra.html" %}
+
+  {% else %}
+  <p>{% blocktrans %}If you have not created an account yet, then please
+  <a class="btn btn-info" href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
+  {% endif %}
+
+  <div class="pl-3 col-9">
+      <div class="card">
+        <div class="card-header bg-dark ">
+      <h3 class="card-title text-white">Login</h3>
+    </div>
+    <div class="card-body">
+      <form class="class="form-control"" method="POST" action="{% url 'account_login' %}">
+        {% csrf_token %}
+        <label for="id_login">Username</label>
+        <div class="form-group">
+        <input class="form-control" type="text" id="id_login" name="login" placeholder="Enter your Username">
+        </div>
+          <label for="id_password">Password</label>
+        <div class="form-group">
+          <input class="form-control" type="password" name="password" id="id_password" placeholder="Enter your Password">
+        </div>
+        <div class="card-footer">
+          <button class="btn btn-primary" type="submit">Login</button>
+          <a href="{% url 'account_reset_password' %}">¿forgot password?</a>
+           
+          
+        </div>
+      </form>
+    </div>
+  </div>
+    </div>
+  </div>
+{% endblock %}

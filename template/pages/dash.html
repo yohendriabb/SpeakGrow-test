@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% load static %}
+{% block navbar %}
+	
+{% endblock navbar %}
+
+{% block content %}
+	{% if user.is_superuser %}
+	<div class="container">
+			<table class="table mt-4">
+				<thead class="thead-dark">
+					<tr>
+					<th scope="col">ID</th>
+					<th scope="col">Hostname</th>
+					<th scope="col">ip_address</th>
+					<th scope="col">created_date</th>
+					<th scope="col">Opcions</th>
+				
+				</tr>
+
+				<tbody>
+				{% for obj in anonymous %}
+					<tr>
+						<th scope="row">{{obj.id}}</th>
+						<th>{{obj.hostname}}</th>
+						<th>{{obj.ip_address}}</th>
+						<th>{{obj.created_date}}</th>
+					</tr>
+				{% endfor %}
+				</tbody>
+				</thead>
+			</table>
+		
+	{% endif %}
+
+	
+		<div class="row-4">
+			<div class="card">
+				<div class="card-header bg-dark">
+					<h3 class="card-title text-white">Users</h3>
+				</div>
+				<div class="card-body col">
+					{% for us in all %}
+
+					<a href="#"><img class="profile img-thumbnail  mb-2" src="{{us.profile_picture.url}}" alt=""></a>
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+		
+	</div>
+{% endblock content %}
